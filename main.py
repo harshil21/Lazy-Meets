@@ -5,6 +5,7 @@ from pygetwindow import PyGetWindowException
 
 from get_coords import get_participant_number
 from meeting_controls import leave_meeting
+from get_clipboard import purge_clipboard_contents
 
 
 gui.PAUSE = 0.2  # Failsafe - 0.2 seconds to abort program by moving cursor to any corner.
@@ -50,6 +51,8 @@ def main() -> None:
         except (IndexError, PyGetWindowException):
             print("Meeting has closed/ended.")
             break
+
+    purge_clipboard_contents()
 
 
 if __name__ == "__main__":
