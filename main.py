@@ -36,10 +36,6 @@ def main() -> None:
                 leave_meeting()
                 break
 
-        except KeyboardInterrupt:
-            print("exiting loop!")
-            break
-
         except gui.FailSafeException:
             print("program aborted due to user intervention!")
             break
@@ -56,4 +52,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('program exit!')
