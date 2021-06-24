@@ -1,6 +1,7 @@
 import os
 from typing import Tuple
 from time import sleep
+import logging
 
 import pyautogui as gui
 
@@ -48,8 +49,8 @@ def get_participant_number() -> int:
 
     try:
         copied_string = get_clipboard_content()
-    except Exception as e:  # Manually copy if something went wrong
-        print(f"Exception raised: {e}.")
+    except Exception as e:
+        logging.error(f"Exception raised: {e}.")
     else:
         copied_number = copied_string
         close_participants_tab(i_x, i_y)  # Finish up by closing the tab

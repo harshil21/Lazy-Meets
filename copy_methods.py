@@ -1,6 +1,7 @@
 import pyautogui as gui
 
 import time
+import logging
 
 from get_clipboard import get_clipboard_content
 from meeting_controls import close_participants_tab, open_participants_tab
@@ -63,7 +64,7 @@ def copy_trier(x: int, y: int, tab_close: tuple) -> None:
         if copy_method(x, y):  # If copy method worked, exit
             selected_method = copy_method
             break
-        print(f"{copy_method.__name__} failed.")
+        logging.info(f"{copy_method.__name__} failed.")
         close_participants_tab(i_x, i_y)
         time.sleep(2)
         open_participants_tab(i_x, i_y)
@@ -74,6 +75,6 @@ def check_copied() -> bool:
     try:
         copied = get_clipboard_content()
     except Exception as e:
-        print(e)
+        logging.debug(str(e))
         return False
     return copied

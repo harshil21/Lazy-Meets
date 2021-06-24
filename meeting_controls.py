@@ -1,4 +1,5 @@
 import pyautogui as gui
+import logging
 
 from get_location import get_button_location
 
@@ -14,10 +15,12 @@ def leave_meeting() -> None:
 
 
 def close_participants_tab(x: int, y: int) -> None:
+    logging.debug('attempting to close participant list')
     gui.click(x, y)
     gui.move(100, 100, 0)
 
 
 def open_participants_tab(x: int, y: int) -> None:
+    logging.debug('attempting to open participant list')
     gui.click(x, y)  # Click on it to view members, etc
     sleep(0.8)  # sleep to let the list render
