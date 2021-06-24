@@ -3,7 +3,7 @@ from re import sub
 
 import pytest
 
-from get_clipboard import get_clipboard_content, purge_clipboard_contents, call_clipboard_cmd
+from helpers.get_clipboard import get_clipboard_content, purge_clipboard_contents, call_clipboard_cmd
 
 
 @pytest.mark.parametrize("copied,expected", [('text (420) text', '420'), ('num 21', '21'), ('just text', None)])

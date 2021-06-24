@@ -5,10 +5,10 @@ import time
 import pyautogui as gui
 from pygetwindow import PyGetWindowException
 
-from get_clipboard import purge_clipboard_contents
-from get_coords import get_participant_number
-from meeting_controls import leave_meeting
-from arg_parser import parse_cmd
+from helpers.get_clipboard import purge_clipboard_contents
+from menu.get_coords import get_participant_number
+from interactions.meeting_controls import leave_meeting
+from interactions.arg_parser import parse_cmd
 
 gui.PAUSE = 0.2  # Failsafe - 0.2 seconds to abort program by moving cursor to any corner.
 

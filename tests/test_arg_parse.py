@@ -2,7 +2,7 @@ import argparse
 
 import pytest
 
-from arg_parser import parse_cmd
+from interactions.arg_parser import parse_cmd
 
 
 @pytest.fixture(scope='session')
