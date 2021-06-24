@@ -3,10 +3,9 @@ import time
 import pyautogui as gui
 from pygetwindow import PyGetWindowException
 
+from get_clipboard import purge_clipboard_contents
 from get_coords import get_participant_number
 from meeting_controls import leave_meeting
-from get_clipboard import purge_clipboard_contents
-
 
 gui.PAUSE = 0.2  # Failsafe - 0.2 seconds to abort program by moving cursor to any corner.
 
@@ -19,6 +18,8 @@ def maximize_screen():
 
 def main() -> None:
     new = None
+    purge_clipboard_contents()
+
     while True:
         try:
             initial = new if new is not None else 0
@@ -29,7 +30,7 @@ def main() -> None:
 
             maximize_screen()
             new = get_participant_number()
-            print(f"Difference in members {new-initial}")
+            print(f"Difference in members {new-initial}. Members present are: {new}")
 
             if new - initial <= -7:  # If 7 or more people left, stop.
                 print("quitting cause everyone is leaving!")
