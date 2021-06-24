@@ -1,9 +1,6 @@
 import pyautogui as gui
 
 
-gui.PAUSE = 2.0
-
-
 def launch_teams():
     """Launches MS Teams from your system, if not launched. If it's already
     opened, then it'll bring it into focus."""
