@@ -13,14 +13,15 @@ Now, make sure that you have already joined a Microsoft Teams meeting. Next, run
 ``` bash
 cd "Lazy-Meets" && python main.py
 ```
+- You can pass more args, see the help message by running `python main.py -h`
 
 Congrats! The script will now monitor for changes and automatically leave the meeting when its supposed to!
 
 ### How it works
 
-The script observes the meeting list every X seconds to get the number of participants currently in the meeting. If Y number of people left the meeting in a short period of time, it leaves the meeting too. This is helpful if you're AFK or just don't like to attend class :P
+The script observes the meeting list every X seconds to get the number of participants currently in the meeting. If Y number of people left the meeting in those X seconds, it leaves the meeting too. This is helpful if you're AFK or just don't like to attend class :P
 
-
+----
 ## FAQ:
 
 ### How is this different from other scripts which claim to do the same thing?
