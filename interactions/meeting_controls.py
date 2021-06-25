@@ -1,7 +1,7 @@
 import pyautogui as gui
 import logging
 
-from get_location import get_button_location
+from helpers.get_location import get_button_location
 
 from time import sleep
 
