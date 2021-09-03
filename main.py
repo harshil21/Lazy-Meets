@@ -1,4 +1,3 @@
-import argparse
 import logging
 import time
 
@@ -17,6 +16,7 @@ def maximize_screen():
     windows = gui.getWindowsWithTitle("Microsoft Teams")
     windows[0].maximize()
     windows[0].activate()
+    return windows[0]
 
 
 def main() -> None:
@@ -31,13 +31,13 @@ def main() -> None:
                 logging.info(f"sleeping for 40s")
                 time.sleep(40)
 
-            maximize_screen()
+            window = maximize_screen()
             new = get_participant_number()
             logging.info(f"Difference in members {new-initial}. Members present are: {new}")
 
             if new - initial <= -7:  # If 7 or more people left, stop.
                 logging.warning("quitting cause everyone is leaving!")
-                leave_meeting()
+                leave_meeting(window)
                 break
 
         except gui.FailSafeException:
