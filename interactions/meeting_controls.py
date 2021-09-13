@@ -2,7 +2,7 @@ import pyautogui as gui
 from pyautogui import Window
 import logging
 
-from helpers.get_location import get_button_location
+from helpers.location import get_button_location
 
 from time import sleep
 
@@ -12,6 +12,7 @@ def leave_meeting(window: Window) -> None:
     if l_coords is None:
         logging.warning("Could not find leave button location! Attempting to force quit...")
         window.close()
+        # Untested code below-
         if window.isActive:  # There can be a confirmation box telling if you want to leave
             leave_confirm_coords = get_button_location("icons/confirm_leave")
 

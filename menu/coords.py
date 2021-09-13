@@ -6,7 +6,7 @@ import pyautogui as gui
 from helpers.clipboard import get_clipboard_content
 from helpers.copy_methods import copy_trier
 from interactions.meeting_controls import close_participants_tab, open_participants_tab
-from helpers.get_location import get_button_location
+from helpers.location import get_button_location
 
 
 def get_call_channels() -> Tuple[int, int]:
