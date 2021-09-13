@@ -1,11 +1,9 @@
-import os
 from typing import Tuple
-from time import sleep
 import logging
 
 import pyautogui as gui
 
-from helpers.get_clipboard import get_clipboard_content
+from helpers.clipboard import get_clipboard_content
 from helpers.copy_methods import copy_trier
 from interactions.meeting_controls import close_participants_tab, open_participants_tab
 from helpers.get_location import get_button_location
@@ -28,7 +26,7 @@ def get_participant_number() -> int:
     """Gets number of participants currently in the meeting."""
     # Locate the participants icon in the screen
     i_region = (0, 49, 1919, 94)  # Region to search in (for high accuracy)
-    p_region = (1520, 125, 399, 950)
+    pane_region = (1520, 125, 399, 950)
     i_x = i_y = p_x = p_y = None
 
     i_coords = get_button_location("icons/participants_list", region=i_region)
@@ -39,13 +37,12 @@ def get_participant_number() -> int:
     open_participants_tab(i_x, i_y)
 
     # Locate the number of participants in that pane.
-    p_coords = get_button_location("icons/participants_number", region=p_region)
+    p_coords = get_button_location("icons/participants_number", region=pane_region, bt_region=True)
 
     if p_coords is None:
         raise ValueError("Could not find participants string location!")
-    p_x, p_y = p_coords
 
-    copy_trier(p_x, p_y, tab_close=(i_x, i_y))  # Try to copy participant info
+    copy_trier(tab_close=i_coords, string_region=p_coords)  # Try to copy participant info
 
     try:
         copied_string = get_clipboard_content()
