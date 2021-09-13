@@ -14,9 +14,12 @@ def get_clipboard_content() -> Optional[str]:
 
 
 def purge_clipboard_contents() -> None:
+    """Purges the all the contents in the clipboard."""
     subprocess.run(["powershell", "-Command", "scb"])
     logging.debug('purging clipboard')
 
 
-def insert_into_clipboard() -> None:
-    subprocess.run(['powershell', "-Command", "Set-Clipboard -Value 'In this Meeting (2)'"])
+def insert_into_clipboard(string) -> None:
+    """Insert specified string into clipboard."""
+    subprocess.run(['powershell', "-Command", f"Set-Clipboard -Value '{string}'"])
+    logging.debug(f'Inserted {string} into the clipboard.')
