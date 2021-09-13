@@ -1,12 +1,24 @@
 # Lazy-Meets
 A script which automatically leaves a MS Teams meeting when you're not around.
 
-## Usage
+![GitHub repo size](https://img.shields.io/github/repo-size/harshil21/Lazy-Meets)
 
-Clone the repository and install the one requirement-
+## Installing
+
+Clone the repository and install the ~~one~~ two requirements:
 ``` bash
 git clone https://github.com/harshil21/Lazy-Meets && pip install -r requirements.txt
 ```
+
+_Update 13/9/21: You will now most likely also need the `pytesseract` library to perform OCR._
+
+### Installing pytesseract & Google Tesseract
+``` bash
+pip install pytesseract
+```
+[Download Google OCR for Windows](https://github.com/UB-Mannheim/tesseract/wiki#tesseract-installer-for-windows)
+(you don't need the training dataset so you can uncheck that. Download size is ~196MB 😔)
+
 
 Now, make sure that you have already joined a Microsoft Teams meeting. Next, run:
 
@@ -26,7 +38,7 @@ The script observes the meeting list every X seconds to get the number of partic
 
 ### How is this different from other scripts which claim to do the same thing?
 
-This script allows to you dynamically leave a meeting. Most other scripts only leave at a particular time, which isn't practical since most meetings don't end on the dot. It's also lightweight, and doesn't require computer vision or massive libraries such as selenium.
+This script allows to you dynamically leave a meeting. Most other scripts only leave at a particular time, which isn't practical since most meetings don't end on the dot. It's also lightweight, and doesn't require computer vision (edit: now needs OCR :/) or massive libraries such as selenium.
 
 ### Why not just use the Microsoft Teams API?
 

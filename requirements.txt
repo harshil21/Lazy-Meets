@@ -1,1 +1,2 @@
 PyAutoGUI
+pytesseract

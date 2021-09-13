@@ -4,12 +4,13 @@ import time
 import pyautogui as gui
 from pygetwindow import PyGetWindowException
 
-from helpers.get_clipboard import purge_clipboard_contents
-from menu.get_coords import get_participant_number
+from helpers.clipboard import purge_clipboard_contents
+from menu.coords import get_participant_number
 from interactions.meeting_controls import leave_meeting
 from interactions.arg_parser import parse_cmd
 
 gui.PAUSE = 0.2  # Failsafe - 0.2 seconds to abort program by moving cursor to any corner.
+sleep_time = 40  # Number of seconds to wait before every update
 
 
 def maximize_screen():
@@ -28,8 +29,8 @@ def main() -> None:
             initial = new if new is not None else 0
 
             if initial:
-                logging.info(f"sleeping for 40s")
-                time.sleep(40)
+                logging.info(f"sleeping for {sleep_time}s")
+                time.sleep(sleep_time)
 
             window = maximize_screen()
             new = get_participant_number()
@@ -45,8 +46,8 @@ def main() -> None:
             break
 
         except ValueError as e:
-            logging.error(f'{str(e)} Sleeping for 40 seconds after error...')
-            time.sleep(40)
+            logging.error(f'{str(e)} Sleeping for {sleep_time} seconds after error...')
+            time.sleep(sleep_time)
 
         except (IndexError, PyGetWindowException):
             logging.warning("Meeting has closed/ended.")
@@ -60,7 +61,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO if args.level is None else args.level.upper(),
-                        format='%(name)s - %(levelname)s - %(funcName)s - %(message)s')
+                        format='%(asctime)s - %(levelname)s - %(funcName)s - %(message)s')
     logging.getLogger('PIL.PngImagePlugin').setLevel(logging.WARNING)
 
     try:
