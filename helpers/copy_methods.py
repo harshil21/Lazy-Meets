@@ -59,7 +59,10 @@ def copy_trier(tab_close: tuple, string_region: tuple = None) -> None:
     x, y = gui.center(string_region)
 
     if selected_method is not None:  # If a method worked previously, use it.
-        gui.moveTo(x, y)
+        if not selected_method.__name__.startswith('do_ocr'):
+            gui.moveTo(x, y)
+        else:
+            grab_screenshot(string_region)
         selected_method(x, y)
         return
     i_x, i_y = tab_close
