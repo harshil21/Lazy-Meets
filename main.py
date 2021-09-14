@@ -5,6 +5,7 @@ import pyautogui as gui
 from pygetwindow import PyGetWindowException
 
 from helpers.clipboard import purge_clipboard_contents
+from helpers.screengrab import remove_screenshot
 from menu.coords import get_participant_number
 from interactions.meeting_controls import leave_meeting
 from interactions.arg_parser import parse_cmd
@@ -54,6 +55,7 @@ def main() -> None:
             break
 
         purge_clipboard_contents()
+        remove_screenshot()
 
 
 if __name__ == "__main__":
