@@ -1,4 +1,5 @@
 import logging
+import signal
 import time
 
 import pyautogui as gui
@@ -6,6 +7,7 @@ from pygetwindow import PyGetWindowException
 
 from helpers.clipboard import purge_clipboard_contents
 from helpers.screengrab import remove_screenshot
+from interactions.sig import check
 from menu.coords import get_participant_number
 from interactions.meeting_controls import leave_meeting
 from interactions.arg_parser import parse_cmd
@@ -61,6 +63,7 @@ def main() -> None:
 if __name__ == "__main__":
     parser = parse_cmd()
     args = parser.parse_args()
+    signal.signal(signal.SIGINT, check)
 
     logging.basicConfig(level=logging.INFO if args.level is None else args.level.upper(),
                         format='%(asctime)s - %(levelname)s - %(funcName)s - %(message)s')
